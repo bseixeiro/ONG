@@ -1,10 +1,10 @@
 import { Text, View } from "react-native";
 import styles from "../../style/global-style";
 
-export default function SettingsScreen() {
+export default function DonScreen() {
   return (
     <View style={styles.container}>
-      <Text>Settings</Text>
+      <Text>Don</Text>
     </View>
   );
 }
