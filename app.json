@@ -5,12 +5,12 @@
     "version": "1.0.0",
     "scheme": "ong",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icone.jpg",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFD0D0"
     },
     "ios": {
       "supportsTablet": true
