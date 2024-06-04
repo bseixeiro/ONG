@@ -1,13 +1,21 @@
 import { ScrollView, Text, TextInput, View, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
 import { useState } from "react";
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function SettingsScreen() {
   const [ba, setBa] = useState("")
   const [bas, setBas] = useState([])
 
   const handleclick = () => {
-    setBas([...bas, ba])
-    console.log(bas)
+    if (ba != ""){
+      setBas([...bas, ba])
+      setBa("")
+    }
+  }
+  const handleSuppress = (index) => {
+    const copy = [...bas]
+    copy.splice(index, 1)
+    setBas(copy)
   }
 
   return (
@@ -21,9 +29,21 @@ export default function SettingsScreen() {
           onChangeText={setBa}
         />
         <TouchableOpacity style={styles.button} onPress={handleclick}>
-          <Text style={styles.buttonText}>Envoyer</Text>
+          <Text style={styles.buttonText}>Ajouter</Text>
         </TouchableOpacity>
       </View>
+
+      {bas.map((b, index) => {
+        return (
+          <View style={styles.li} key={index}>
+            <Text style={styles.item}>{b}</Text>
+            <TouchableOpacity style={styles.buttonBis} onPress={() => handleSuppress(index)}>
+              <Ionicons name="trash-bin-sharp" size={20} color="black" />
+            </TouchableOpacity>
+          </View>
+        );
+      })}
+
     </ScrollView>
   );
 }
@@ -32,6 +52,9 @@ const styles = StyleSheet.create({
   container: {
     padding: 100,
   },
+  item: {
+    width: (Dimensions.get("screen").width * 0.7),
+  },
   form: {
     marginTop: 20,
     padding: 10,
@@ -39,17 +62,32 @@ const styles = StyleSheet.create({
     backgroundColor: "ffffffff",
     alignItems: "center",
     justifyContent: "center",
-    borderColor: "#6DC5D1",
-    borderWidth: 1,
-    borderRadius: 5,
+  },
+  li: {
+    width: (Dimensions.get("screen").width * 0.9),
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: -20,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    marginTop: 5,
+    marginLeft: 15,
   },
   div: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "ffffffff",
     alignItems: "center",
     justifyContent: "center",
-    maxHeight: (Dimensions.get("screen").height * 0.2)
+    width: (Dimensions.get("screen").width * 0.5)
   },
  
   label: {
@@ -79,6 +117,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 10,
     width: "80vw",
+  },
+  buttonBis: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    alignItems: "center",
+    marginLeft: 10,
   },
   buttonText: {
     fontSize: 16,
