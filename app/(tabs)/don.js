@@ -20,7 +20,7 @@ export default function DonScreen() {
           onChangeText={setDon}
         />
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Submit</Text>
+          <Text style={styles.buttonText}>Envoyer</Text>
         </TouchableOpacity>
       </View>
     </View>
